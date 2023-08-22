@@ -1,20 +1,13 @@
-'use client';
-
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { NextPage } from 'next';
+import { cookies } from 'next/headers';
 
-import { InputForm } from '~/components/InputForm';
+const Home: NextPage = async () => {
+  const supabase = createServerComponentClient({ cookies });
+  const { data: post } = await supabase.from('post').select();
+  console.log(post);
 
-const Home: NextPage = () => {
-  const handleFormSubmit = (title: string, content: string) => {
-    console.log('タイトル:', title);
-    console.log('内容:', content);
-  };
-
-  return (
-    <div className="bg-lime-300">
-      <InputForm onSubmit={handleFormSubmit} />
-    </div>
-  );
+  return <div className="bg-lime-300"></div>;
 };
 
 export default Home;
