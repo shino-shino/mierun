@@ -29,6 +29,16 @@ export async function getListOfPostFromMierun() {
   }
 }
 
+export async function getListOfPostWithRangeFromMierun(range: number) {
+  try {
+    const { error } = await supabase.rpc("get_list", {range_num: range});
+
+    if (error) throw Error;
+  } catch (error) {
+    alert(error)
+  }
+}
+
 export async function getLatestPostFromMierun() {
   try {
     const { error } = await supabase.rpc("get_latest");
@@ -41,7 +51,7 @@ export async function getLatestPostFromMierun() {
 
 export async function getThePostFromMierun(targetId: number) {
   try {
-    const { error } = await supabase.rpc("get_latest", {id: targetId});
+    const { error } = await supabase.rpc("get_latest", {arg_id: targetId});
 
     if (error) throw Error;
   } catch (error) {
