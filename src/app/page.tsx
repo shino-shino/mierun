@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
-import { NextPage } from "next";
+import { NextPage } from 'next';
 
-import { InputForm } from "~/components/InputForm";
+import { InputForm } from '~/components/InputForm';
 
-const Home:  NextPage = () => {
+const Home: NextPage = () => {
   const handleFormSubmit = (title: string, content: string) => {
-    console.log( 'タイトル:', title);
+    console.log('タイトル:', title);
     console.log('内容:', content);
   };
 
@@ -15,6 +15,6 @@ const Home:  NextPage = () => {
       <InputForm onSubmit={handleFormSubmit} />
     </div>
   );
-}
+};
 
 export default Home;
