@@ -55,5 +55,5 @@
   "editor.quickSuggestions": {
     "strings": true
   },
-  "prettier.prettierPath": "./node_modules/prettier"
+  "prettier.prettierPath": "./node_modules/prettier",
 }
