@@ -13,11 +13,10 @@ const Post: NextPage<PostProps> = async ({ params }) => {
   // console.log(post);
 
   return (
-    <ReplyBox></ReplyBox>
-    // <div className="flex flex-row flex-wrap gap-8 bg-slate-300">
-    //   {/* <PostView posts={postData} /> */}
-    //   <ReplyBox></ReplyBox>
-    // </div>
+    <>
+      <h1>あーすればいいよ</h1>
+      <ReplyBox></ReplyBox>
+    </>
   );
 };
 
