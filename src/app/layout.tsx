@@ -1,4 +1,12 @@
+import { Kiwi_Maru } from "next/font/google";
 import '~/assets/styles/globals.css';
+
+export const KiwiMaru = Kiwi_Maru(
+  {
+    weight: '400',
+    subsets: ['latin']
+  }
+)
 
 export const metadata = {
   title: 'みえるん',
@@ -12,8 +20,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body>
-        <main className="min-h-screen bg-background">{children}</main>
+      <body className={`${KiwiMaru.className}  font-KiwiMaru`}>
+        <main className={"min-h-screen bg-background"}>{children}</main>
       </body>
     </html>
   );

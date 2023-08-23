@@ -1,11 +1,24 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
-import { Post } from './ClassPost';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { PostValues } from './PostCreater';
 
-const supabase = createServerComponentClient({ cookies });
+const supabase = createClientComponentClient()
 
-export function postAPostToMierun(aPost: Post) {
-  supabase.from("post").insert({is_root: aPost.isRoot, content: aPost.content, create_at: aPost.createAt});
+export async function postToMierun(post: PostValues) {
+  try {
+    // console.log('post', post)
+    const { error } = await supabase.from("post")
+      .insert({
+        // id: 0,
+        isRoot: true, 
+        content: post.content, 
+        create_at: new Date().toISOString()
+      });
+
+    if (error) throw Error
+  }
+  catch (error) {
+    alert(error)
+  }
 };
 
 // export function postAReplyToMierun(aPost: Post, targetId: number) {
