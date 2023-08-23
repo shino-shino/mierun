@@ -6,7 +6,7 @@ type PostCardProps = {
   color: 'yuzu' | 'mandarin' | 'lime' | 'grapefruit' | 'lemon';
 };
 
-const PostCard = ({ title, content, color }: PostCardProps) => {
+export const PostCard = ({ title, content, color }: PostCardProps) => {
   const colorClassName = 'bg-[#ffe24a]';
   // const colorClassName = 'bg-' + color;
   const cardClassName = 'flex w-48 h-32 flex-col space-y-1 ' + colorClassName;
@@ -19,5 +19,3 @@ const PostCard = ({ title, content, color }: PostCardProps) => {
     </div>
   );
 };
-
-export default PostCard;

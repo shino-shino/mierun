@@ -5,62 +5,20 @@ const supabase = createClientComponentClient()
 
 export async function postToMierun(post: PostValues) {
   try {
+    // console.log(post)
     const { error } = await supabase.from("post")
       .insert({
         // id: 0,
-        isRoot: true, 
         content: post.content, 
-        isChildminder: post.isChildminder,
-        create_at: new Date().toISOString()
+        is_root: true, 
+        is_childminder: post.isChildminder,
+        // parent_id: 0,
+        // child_id: 0,
+        created_at: new Date().toISOString()
       });
 
     if (error) throw Error;
   } catch (error) {
-    alert(error)
+    console.error(error)
   }
 };
-
-export async function getListOfPostFromMierun() {
-  try {
-    const { data, error } = await supabase.rpc("get_list");
-
-    if (error) throw Error;
-
-    if (data) return data
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-export async function getListOfPostWithRangeFromMierun(range: number) {
-  try {
-    const { error } = await supabase.rpc("get_list", {range_num: range});
-
-    if (error) throw Error;
-  } catch (error) {
-    alert(error)
-  }
-}
-
-export async function getLatestPostFromMierun() {
-  try {
-    const { data, error } = await supabase.rpc("get_latest");
-
-    if (error) throw Error;
-    
-    if (data) return data;
-
-  } catch (error) {
-    console.error(error)
-  }
-}
-
-export async function getThePostFromMierun(targetId: number) {
-  try {
-    const { error } = await supabase.rpc("get_latest", {arg_id: targetId});
-
-    if (error) throw Error;
-  } catch (error) {
-    alert(error)
-  }
-}
