@@ -20,26 +20,31 @@ const Post: NextPage<PostProps> = async ({ params }) => {
       <div>{postData.map((post) => {
         if(post.isRoot) {
           return (
-            <li className="post" key={post.id}>
-                <span className="post_text">
+            <div className="bg-[#FFE249] flex flex-col gap-3 py-1 md:py-2.5" key={post.id}>
+              <div className="bg-white rounded-md mt-10 p-4">
+                <span className="block text-sm font-bold">
                   {post.content}
-                <span className="posted_time">
+                  </span>
+                <span className="block text-sm text-gray-500">
                   {post.create_at}
+                  <span>☆</span>
                 </span>
-                <span>★</span>
-                </span>
-            </li>
+                </div>
+
+            </div>
           );
         } else {
           return (
-            <li className="post" key={post.id}>
-                <span className="post_text">
+            <div className="bg-[#FFE249] flex flex-col gap-3 py-1 md:py-2.5" key={post.id}>
+               <div className="bg-white rounded-md mt-10  p-4">
+                <span className="block text-sm font-bold">
                   {post.content}
-                <span className="posted_time">
+                  </span>
+                <span className="block text-sm text-gray-500">
                   {post.create_at}
                 </span>
-                </span>
-            </li>
+                </div>
+            </div>
           );
         }
         })}
