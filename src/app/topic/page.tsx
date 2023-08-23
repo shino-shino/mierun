@@ -7,9 +7,7 @@ import { Database } from '~/types/Database';
 
 const Topic: NextPage = async () => {
   const supabase = createServerComponentClient<Database>({ cookies });
-
   const { data: topic } = await supabase.from('topic').select();
-  console.log(topic);
 
   return (
     <>

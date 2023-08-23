@@ -1,14 +1,20 @@
-import type { Topic } from '~/types/Topic';
+import type { Database } from '~/types/Database';
+
+type TopicData = Database['public']['Tables']['topic']['Row'];
 
 interface TopicListProps {
-  topics: Topic[];
+  topics: TopicData[] | null;
 }
 
 export const TopicList = ({ topics }: TopicListProps): JSX.Element => {
+  if (!topics) {
+    return <></>;
+  }
+
   return (
     <ul>
       {topics.map((topic) => (
-        <li key={topic.id}>{topic.title}</li>
+        <li key={topic.id}>{topic.topic_title}</li>
       ))}
     </ul>
   );
