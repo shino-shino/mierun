@@ -1,9 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/app/**/*.{js,ts,jsx,tsx,mdx}'],
-  purge: [
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}'
+  content: [
+    './src/**/*.{js,ts,jsx,tsx,mdx}'
   ],
+  // purge: [
+  //   './src/app/**/*.{js,ts,jsx,tsx,mdx}'
+  // ],
   theme: {
     extend: {
       colors: {
@@ -18,6 +20,9 @@ module.exports = {
         'lime': '#cfff48',
         'grapefruit': '#f4ae90',
         'lemon': '#fffd93'
+      },
+      fontFamily: {
+        KiwiMaru: ["var(--font-KiwiMaru)"],
       },
       plugins: [
         require('@tailwindcss/line-clamp'),
