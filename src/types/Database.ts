@@ -9,6 +9,34 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      pic_to_pos: {
+        Row: {
+          pic_id: number
+          pos_id: number
+        }
+        Insert: {
+          pic_id: number
+          pos_id: number
+        }
+        Update: {
+          pic_id?: number
+          pos_id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pic_to_pos_pic_id_fkey"
+            columns: ["pic_id"]
+            referencedRelation: "picture"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pic_to_pos_pos_id_fkey"
+            columns: ["pos_id"]
+            referencedRelation: "post"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       picture: {
         Row: {
           id: number
@@ -26,31 +54,31 @@ export interface Database {
       }
       post: {
         Row: {
-          child_id: number
+          child_id: number | null
           content: string
           created_at: string
           id: number
           is_childminder: boolean
           is_root: boolean
-          parent_id: number
+          parent_id: number | null
         }
         Insert: {
-          child_id?: number
+          child_id?: number | null
           content: string
           created_at: string
           id?: never
           is_childminder?: boolean
           is_root?: boolean
-          parent_id?: number
+          parent_id?: number | null
         }
         Update: {
-          child_id?: number
+          child_id?: number | null
           content?: string
           created_at?: string
           id?: never
           is_childminder?: boolean
           is_root?: boolean
-          parent_id?: number
+          parent_id?: number | null
         }
         Relationships: [
           {

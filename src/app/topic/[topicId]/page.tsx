@@ -1,5 +1,10 @@
 import { NextPage } from 'next';
 
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
+import { PostView } from '~/components/PostView';
+import { Database } from '~/types/Database';
+
 interface PostProps {
   params: {
     topicId: string;
@@ -7,13 +12,21 @@ interface PostProps {
 }
 
 const Post: NextPage<PostProps> = async ({ params }) => {
-  // const supabase = createServerComponentClient({ cookies });
-  // const { data: post } = await supabase.from('post').select();
-  // console.log(post);
+  const supabase = createServerComponentClient<Database>({ cookies });
+  const { data: topic } = await supabase
+    .from('topic')
+    .select('list_of_post')
+    .eq('id', params.topicId)
+    .single();
+
+  const { data: post } = await supabase
+    .from('post')
+    .select()
+    .in('id', topic.list_of_post);
 
   return (
-    <div className="flex flex-row flex-wrap gap-8 bg-slate-300">
-      {/* <PostView posts={postData} /> */}
+    <div>
+      <PostView posts={post} />
     </div>
   );
 };
