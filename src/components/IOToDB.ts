@@ -47,9 +47,42 @@ export async function downloadDatabase(topicID: string) {
   }
 }
 
-export async function reply() {
-  // targetのchild_idに、返信ポストのidを挿入
-    // 返信ポストのidをdbから取得
-    // 返信ポストをdbに挿入して
-  // 返信するポストのparent_idにtargetのidを入れる
+export async function insertReplyWithParentId(targetId:number, post: PostValues) {
+  try {
+    // console.log(post)
+    const { error } = await supabase.from("post")
+      .insert({
+        // id: 0,
+        content: post.content, 
+        is_root: true, 
+        is_childminder: post.isChildminder,
+        parent_id: targetId,
+        // child_id: 0,
+        created_at: new Date().toISOString()
+      });
+
+    if (error) throw Error;
+  } catch (error) {
+    console.error(error)
+  }
+};
+
+function getReplysId(targetId: number): number {
+  // parent_idに親のIDが入っている要素を探す
+  const num: number = 0;
+
+  // search elements | targetId == parent_id
+
+  return num;
+}
+
+function insertChildIdToParentPost(targetId: number) {
+  // targetのchild IDに返信ポストのIDを挿入
+  const replyId: number = getReplysId(targetId);
+  // update row with replyId | targetId == parent_id
+}
+
+export async function reply(targetId: number, post: PostValues) {
+  insertReplyWithParentId(targetId, post);
+  insertChildIdToParentPost(targetId);
 }
