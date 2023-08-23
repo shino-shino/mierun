@@ -6,8 +6,12 @@ const Home: NextPage = async () => {
   // const { data: post } = await supabase.from('post').select();
   // console.log(post);
 
-  return <div className="bg-lime-300">
-    <PostCard title={'タイトル'} content={'コンテンツあああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ'} color={'bg-slate-500'}/>
+  return <div className="flex flex-row flex-wrap bg-slate-300 gap-8">
+    <PostCard title={'タイトル'} content={'コンテンツあああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ'} color={'yuzu'}/>
+    <PostCard title={'タイトル'} content={'コンテンツあああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ'} color={'mandarin'}/>
+    <PostCard title={'タイトル'} content={'コンテンツあああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ'} color={'lime'}/>
+    <PostCard title={'タイトル'} content={'コンテンツあああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ'} color={'grapefruit'}/>
+    <PostCard title={'タイトル'} content={'コンテンツあああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ'} color={'lemon'}/>
   </div>;
 };
 
