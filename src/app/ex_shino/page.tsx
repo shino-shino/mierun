@@ -1,6 +1,5 @@
 import { NextPage } from 'next';
 import PostDetail from '~/components/PostDetail';
-// import PostToMap from '~/components/PostToMap';
 import ReplyBox from '~/components/ReplyBox';
 import { postData } from '~/constants/postData';
 interface PostProps {
@@ -42,7 +41,6 @@ const Post: NextPage<PostProps> = async ({ params }) => {
             </li>
           );
         }
-
         })}
       </div>
     </>
