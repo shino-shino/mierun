@@ -17,15 +17,15 @@ const Post: NextPage<PostProps> = async ({ params }) => {
         <ReplyBox></ReplyBox>
       </div>
       
-      <div>{postData.map((post) => {
+      <div className="py-4 md:py-8" >{postData.map((post) => {
         if(post.isRoot) {
           return (
-            <div className="bg-[#FFE249] flex flex-col gap-3 py-1 md:py-2.5" key={post.id}>
-              <div className="bg-white rounded-md mt-10 p-4">
-                <span className="block text-sm font-bold">
+            <div className="bg-[#FFE249] flex flex-col gap-3 py-4 md:py-1 mx-40" key={post.id}>
+              <div className="bg-white rounded-md mt-10 py-1 mx-3">
+                <span className="block text-sm font-bold mx-3">
                   {post.content}
                   </span>
-                <span className="block text-sm text-gray-500">
+                <span className="block text-sm text-gray-500 mx-3">
                   {post.create_at}
                   <span>☆</span>
                 </span>
@@ -35,12 +35,12 @@ const Post: NextPage<PostProps> = async ({ params }) => {
           );
         } else {
           return (
-            <div className="bg-[#FFE249] flex flex-col gap-3 py-1 md:py-2.5" key={post.id}>
-               <div className="bg-white rounded-md mt-10  p-4">
-                <span className="block text-sm font-bold">
+            <div className="bg-[#FFE249] flex flex-col gap-3 py-0 md:py-1 mx-40" key={post.id}>
+               <div className="bg-white rounded-md mt-10  py-1 mx-3">
+                <span className="block text-sm font-bold mx-3">
                   {post.content}
                   </span>
-                <span className="block text-sm text-gray-500">
+                <span className="block text-sm text-gray-500 mx-3">
                   {post.create_at}
                 </span>
                 </div>
