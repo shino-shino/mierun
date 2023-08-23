@@ -6,7 +6,10 @@ import PostTextarea from './PostTextarea'
 
 // }
 export type PostValues = {
+  parentId: any
+  childId: any
   isRoot: boolean
+  isChildminder: any
   content: string
 }
 
