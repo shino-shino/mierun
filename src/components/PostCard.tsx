@@ -12,7 +12,6 @@ const PostCard = ({ title, content, color }: PostCardProps) => {
   // const colorClassName = 'bg-' + color;
   const cardClassName = 'flex w-48 h-32 flex-col space-y-1 ' + colorClassName;
 
-  console.log(colorClassName)
   return (
     // <div className={cardClassName}>
     <div className={cardClassName}>

@@ -1,4 +1,5 @@
 import { NextPage } from 'next';
+import PostCreater from '~/components/PostCreater';
 import PostCard from '../components/PostCard';
 
 const Home: NextPage = async () => {
@@ -8,6 +9,7 @@ const Home: NextPage = async () => {
 
   return (
     <div className="flex flex-row flex-wrap gap-8 bg-slate-200">
+      <PostCreater />
       <PostCard
         title={'タイトル'}
         content={
@@ -44,6 +46,7 @@ const Home: NextPage = async () => {
         color={'lemon'}
       />
     </div>
+
   );
 };
 
