@@ -8,19 +8,32 @@ interface PostProps {
   };
 }
 
+const isChildminder = true;
+
 const Post: NextPage<PostProps> = async ({ params }) => {
   // const supabase = createServerComponentClient({ cookies });
   // const { data: post } = await supabase.from('post').select();
   // console.log(post);
 
-  return (
-    <>
-      <PostDetail></PostDetail>
-      <br></br>
-      <h1>仮：あーすればいいよ</h1>
-      <ReplyBox></ReplyBox>
-    </>
-  );
+  if (isChildminder) {
+    return (
+      <>
+        <PostDetail></PostDetail>
+        <br></br>
+        <h1>仮：あーすればいいよ____保育士です!!!!!!!!</h1>
+        <ReplyBox></ReplyBox>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <PostDetail></PostDetail>
+        <br></br>
+        <h1>仮：あーすればいいよ</h1>
+        <ReplyBox></ReplyBox>
+      </>
+    );
+  }
 };
 
 export default Post;
