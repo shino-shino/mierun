@@ -1,3 +1,4 @@
+'use client'
 import { PostCard } from '~/components/PostCard';
 import { Database } from '~/types/Database';
 import { getColorById } from '~/utils/color';

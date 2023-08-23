@@ -1,4 +1,5 @@
 import { Kiwi_Maru } from "next/font/google";
+import 'semantic-ui-css/semantic.min.css';
 import '~/assets/styles/globals.css';
 
 export const KiwiMaru = Kiwi_Maru(
