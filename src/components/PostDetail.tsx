@@ -8,8 +8,12 @@ const  PostDetail=()=>{
 
   return (
     <>
-        <h1 className="10% ">{title}</h1>
-        <p className="text-sm">{content}</p>
+      <div className="bg-[#FFE249] mx-40 my-10">
+        <div className="px-8 py-4">
+          <h1 className="10% text-4xl">{title}</h1>
+          <p className="text-sm line h-80 text-2xl">{content}</p>
+        </div>
+      </div>
     </>
     )
 }
