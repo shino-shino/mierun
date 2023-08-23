@@ -1,6 +1,5 @@
-'use client'
 import { NextPage } from 'next';
-import AccountForm from './components/AccountForm';
+import PostCard from './components/PostCard';
 
 const Home: NextPage = async () => {
   // const supabase = createServerComponentClient({ cookies });
@@ -8,7 +7,7 @@ const Home: NextPage = async () => {
   // console.log(post);
 
   return <div className="bg-lime-300">
-    <AccountForm />
+    <PostCard title={'タイトル'} content={'コンテンツあああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ'} color={'bg-slate-500'}/>
   </div>;
 };
 
