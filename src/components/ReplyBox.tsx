@@ -1,6 +1,7 @@
-import { useForm } from 'react-hook-form'
-import AccountTextarea from '~/app/components/AccountTextarea'
+'use client'
 
+import { useForm } from 'react-hook-form'
+import AccountTextarea from './AccountTextarea'
 export type ProfileFormValues = {
   reply_content: string | null
 }
