@@ -31,7 +31,6 @@ export async function downloadDatabase(topicID: string) {
       .eq('id', topicID)
       .single();
 
-
     if (topicError) throw Error
     if (!topic) throw Error 
     const { data: post, error: postError } = await supabase
@@ -46,5 +45,11 @@ export async function downloadDatabase(topicID: string) {
   catch (error){
     console.error(error)
   }
+}
 
+export async function reply() {
+  // targetのchild_idに、返信ポストのidを挿入
+    // 返信ポストのidをdbから取得
+    // 返信ポストをdbに挿入して
+  // 返信するポストのparent_idにtargetのidを入れる
 }
