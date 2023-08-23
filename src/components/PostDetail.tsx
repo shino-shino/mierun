@@ -1,8 +1,6 @@
 'use client'
 import { useState } from "react";
 
-
-
 const  PostDetail=()=>{
   const [title, setTitle] = useState('testTitle')
   const [content, setContent] = useState('testContent')
