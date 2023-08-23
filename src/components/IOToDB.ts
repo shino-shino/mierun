@@ -5,7 +5,6 @@ const supabase = createClientComponentClient()
 
 export async function postToMierun(post: PostValues) {
   try {
-    // console.log('post', post)
     const { error } = await supabase.from("post")
       .insert({
         // id: 0,
@@ -14,25 +13,38 @@ export async function postToMierun(post: PostValues) {
         create_at: new Date().toISOString()
       });
 
-    if (error) throw Error
-  }
-  catch (error) {
+    if (error) throw Error;
+  } catch (error) {
     alert(error)
   }
 };
 
-// export function postAReplyToMierun(aPost: Post, targetId: number) {
-//   supabase.from("post").insert({is_root: aPost.isRoot, content: aPost.content, create_at: aPost.createAt});
+export async function getListOfPostFromMierun() {
+  try {
+    const { error } = await supabase.rpc("get_list");
 
-//   let list = getListOfPostFromMierun();
+    if (error) throw Error;
+  } catch (error) {
+    alert(error)
+  }
+}
 
-//   supabase.from("post_and_post").insert({parent_post_id: targetId, child_post_id:});
-// };
+export async function getLatestPostFromMierun() {
+  try {
+    const { error } = await supabase.rpc("get_latest");
 
-// export function getAPostFromMierun(targetId: number) {
-// }
-// export function getListOfPostFromMierun() {
-//   const list = supabase.from("post").select();
+    if (error) throw Error;
+  } catch (error) {
+    alert(error)
+  }
+}
 
-//   return list;
-// }
+export async function getThePostFromMierun(targetId: number) {
+  try {
+    const { error } = await supabase.rpc("get_latest", {id: targetId});
+
+    if (error) throw Error;
+  } catch (error) {
+    alert(error)
+  }
+}
