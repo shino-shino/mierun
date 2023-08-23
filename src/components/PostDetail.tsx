@@ -3,7 +3,7 @@ import { useState } from "react";
 
 
 
-const  postDetail=()=>{
+const  PostDetail=()=>{
   const [title, setTitle] = useState('testTitle')
   const [content, setContent] = useState('testContent')
   const [postedtime, setPostedtime] = useState('更新日時') 
@@ -15,4 +15,4 @@ const  postDetail=()=>{
     </>
     )
 }
-export default postDetail;
+export default PostDetail;

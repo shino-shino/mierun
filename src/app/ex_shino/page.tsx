@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import ReplyBox from '~/components/ReplyBox';
+import PostDetail from '~/components/PostDetail';
 
 interface PostProps {
   params: {
@@ -14,7 +15,9 @@ const Post: NextPage<PostProps> = async ({ params }) => {
 
   return (
     <>
-      <h1>あーすればいいよ</h1>
+      <PostDetail></PostDetail>
+      <br></br>
+      <h1>仮：あーすればいいよ</h1>
       <ReplyBox></ReplyBox>
     </>
   );
