@@ -12,9 +12,10 @@ const Post: NextPage<PostProps> = async ({ params }) => {
   return (
     <>
       <PostDetail></PostDetail>
-      <br></br>
-      <h1>仮：あーすればいいよ</h1>
-      <ReplyBox></ReplyBox>
+      <div className='bg-[#FFE249] mx-40 px-8 py-4'>
+        <h1>記入例：あーすればいいよ</h1>
+        <ReplyBox></ReplyBox>
+      </div>
       
       <div>{postData.map((post) => {
         if(post.isRoot) {
