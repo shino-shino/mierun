@@ -10,6 +10,7 @@ export async function postToMierun(post: PostValues) {
         // id: 0,
         isRoot: true, 
         content: post.content, 
+        isChildminder: post.isChildminder,
         create_at: new Date().toISOString()
       });
 
@@ -21,11 +22,13 @@ export async function postToMierun(post: PostValues) {
 
 export async function getListOfPostFromMierun() {
   try {
-    const { error } = await supabase.rpc("get_list");
+    const { data, error } = await supabase.rpc("get_list");
 
     if (error) throw Error;
+
+    if (data) return data
   } catch (error) {
-    alert(error)
+    console.error(error)
   }
 }
 
@@ -41,11 +44,14 @@ export async function getListOfPostWithRangeFromMierun(range: number) {
 
 export async function getLatestPostFromMierun() {
   try {
-    const { error } = await supabase.rpc("get_latest");
+    const { data, error } = await supabase.rpc("get_latest");
 
     if (error) throw Error;
+    
+    if (data) return data;
+
   } catch (error) {
-    alert(error)
+    console.error(error)
   }
 }
 

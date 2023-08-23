@@ -11,10 +11,10 @@ const PostTextarea = ({
   const error = errors[name]
 
   return (
-    <div className='flex h-64 w-full flex-col py-2'>
+    <div className='px-12 flex h-64 w-full flex-col py-2'>
       <label htmlFor={name} className='text-sm font-bold text-slate-600'>
         {label}
-        <span className=' text-teal-700'> {helpText}</span>
+        <span className=' text-red-400'> {helpText}</span>
       </label>
       <textarea
         id={name}
@@ -22,7 +22,7 @@ const PostTextarea = ({
         ${
           error
             ? 'border-red-400 focus:outline-none focus:ring focus:ring-red-400'
-            : 'focus:outline-none focus:ring focus:ring-teal-200'
+            : 'outline outline-yuzu focus:ring focus:ring-yuzu'
         }`}
         {...register(name, options)}
       />
