@@ -1,15 +1,22 @@
-import PostCard from "./PostCard"
+import { PostCard } from '~/components/PostCard';
+import type { Post } from '~/types/Post';
+import { getColorById } from '~/utils/color';
 
-const PostView = () => {
-  return (
-    <div className="flex flex-row flex-wrap bg-slate-300 gap-8">
-      <PostCard title={'タイトル'} content={'コンテンツあああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ'} color={'yuzu'}/>
-      <PostCard title={'タイトル'} content={'コンテンツあああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ'} color={'mandarin'}/>
-      <PostCard title={'タイトル'} content={'コンテンツあああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ'} color={'lime'}/>
-      <PostCard title={'タイトル'} content={'コンテンツあああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ'} color={'grapefruit'}/>
-      <PostCard title={'タイトル'} content={'コンテンツあああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ'} color={'lemon'}/>
-    </div>
-  )
+interface PostViewProps {
+  posts: Post[];
 }
 
-export default PostView
+export const PostView = ({ posts }: PostViewProps): JSX.Element => {
+  return (
+    <div className="flex flex-row flex-wrap gap-8 bg-slate-300">
+      {posts.map((post) => {
+        <PostCard
+          key={post.id}
+          title={post.id}
+          content={post.content}
+          color={getColorById(post.id)}
+        />;
+      })}
+    </div>
+  );
+};
