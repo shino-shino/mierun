@@ -1,7 +1,7 @@
 'use client';
 
 type PostCardProps = {
-  title: string;
+  title: string | null;
   content: string;
   color: string;
 };

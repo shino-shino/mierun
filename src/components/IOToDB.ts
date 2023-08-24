@@ -27,6 +27,56 @@ export async function postToMierun(post: PostValues) {
   }
 }
 
+export async function getLatestPostID(): Promise<number | undefined> {
+  try {
+    // `post` テーブルからデータを `create_at` で降順にソートして、最初の1つだけ取得
+    const { data: posts, error: postError } = await supabase
+      .from('post')
+      .select('id')
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .single();
+
+    if (postError) throw Error;
+
+    // ポストが存在すればそのIDを返す
+    if (posts) return parseInt(posts.id);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function addPostIdToTopic(
+  topicId: number | undefined,
+  postId: number | undefined,
+): Promise<void> {
+  try {
+    // まず指定されたtopicのlist_of_postを取得する
+    const { data: topic, error: topicError } = await supabase
+      .from('topic')
+      .select('list_of_post')
+      .eq('id', topicId)
+      .single();
+
+    if (topicError) throw topicError;
+    if (!topic) throw new Error('Topic not found');
+
+    // list_of_postに新しいpostIdを追加する
+    let updatedListOfPost = topic.list_of_post || [];
+    updatedListOfPost.push(postId);
+
+    // 更新されたlist_of_postでDBを更新する
+    const { error: updateError } = await supabase
+      .from('topic')
+      .update({ list_of_post: updatedListOfPost })
+      .eq('id', topicId);
+
+    if (updateError) throw updateError;
+  } catch (error) {
+    console.error('Error adding post id to topic:', error);
+  }
+}
+
 // export async function downloadDatabase(
 //   topicID: string,
 // ): Promise<PostData[] | undefined> {

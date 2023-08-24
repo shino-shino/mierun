@@ -4,14 +4,15 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Modal from 'react-modal';
 import { Icon } from 'semantic-ui-react';
-import { postToMierun } from './IOToDB';
+import { addPostIdToTopic, getLatestPostID, postToMierun } from './IOToDB';
 import PlusButton from './PlusButton';
 import PostInput from './PostFormInput';
 import PostTextarea from './PostTextarea';
 
-// type PostCreaerProps = {
+type PostCreaerProps = {
+  topicId?: number;
+};
 
-// }
 export type PostValues = {
   parentId: number;
   childId: number;
@@ -21,13 +22,15 @@ export type PostValues = {
   isChildminder: boolean;
 };
 
-const PostCreater = () => {
+const PostCreater = ({ topicId }: PostCreaerProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { register, handleSubmit, formState } = useForm<PostValues>();
 
   const onSubmit = async (data: PostValues) => {
     await postToMierun(data);
-    setIsOpen(false);
+    const postId = await getLatestPostID();
+    await addPostIdToTopic(topicId, postId);
+    await setIsOpen(false);
   };
 
   return (
@@ -83,21 +86,35 @@ const PostCreater = () => {
                 options={{
                   required: '入力してください',
                   maxLength: {
-                    value: 50,
+                    value: 100,
                     message: '文字数が多すぎます',
                   },
                 }}
               />
               <div className="flex w-full flex-row space-x-4">
+                <label htmlFor="isChildminder" className="ml-12 text-sm">
+                  保育士ですか:
+                </label>
                 <input
                   type="checkbox"
                   id="isChildminder"
                   className="ml-12 flex w-4 accent-yuzu"
                   {...register('isChildminder')}
                 />
-                <label htmlFor="isChildminder" className="text-sm">
-                  保育士ですか?
+              </div>
+              <div className="flex w-full flex-row space-x-4">
+                <label htmlFor="topicTitle" className="ml-12 text-sm">
+                  トピックタイトル:
                 </label>
+                <select
+                  id="topicTitle"
+                  className="flex w-4 accent-yuzu"
+                  // {...register('topicTitle')}
+                >
+                  <option value="トピック1">トピック1</option>
+                  <option value="トピック2">トピック2</option>
+                  <option value="トピック3">トピック3</option>
+                </select>
               </div>
             </div>
             <button
