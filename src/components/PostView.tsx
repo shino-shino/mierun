@@ -27,16 +27,18 @@ export const PostView = ({ posts }: PostViewProps): JSX.Element => {
     return <div>エラーが発生しました</div>;
 
   return (
-    <div className="flex w-full flex-row flex-wrap items-center justify-center space-x-8 space-y-4">
+    <div className="flex w-full justify-center items-center flex-wrap space-x-6 space-y-6 py-4">
       <PostCreater />
 
       {posts.map((post: PostData) => (
+        <div className='[&:nth-child(5n)]:bg-[#FFFD94] [&:nth-child(5n+1)]:bg-[#FFE249] [&:nth-child(5n+2)]:bg-[#FFC01D] [&:nth-child(5n+3)]:bg-[#CFFF49] [&:nth-child(5n+4)]:bg-[#F4AF90] hover:brightness-90 top-0'>
         <PostCard
           // key={post.id}
           title={post.title}
           content={post.content}
           color={getColorById(post.id)}
         />
+        </div>
       ))}
     </div>
   );
