@@ -11,8 +11,8 @@ interface PostProps {
 }
 
 const any: NextPage<PostProps> = async ({ params }) => {
-  const post_js= await GetPost(5);
-  const post = new Post(post_js[0].id,post_js[0].content,post_js[0].created_at,post_js[0].is_root,post_js[0].is_childminder);
+  const post_js= await GetPost(36);
+  const post = new Post(5,post_js[0].title,post_js[0].content,post_js[0].created_at,post_js[0].is_root,post_js[0].is_childminder);
   console.log(post)
   return (
      <div className='bg-[#FFFD93]  my-0'>
@@ -23,6 +23,7 @@ const any: NextPage<PostProps> = async ({ params }) => {
         <div className='bg-[#FFE249] mx-40 px-8 py-4'>
           <h1>記入例：あーすればいいよ</h1>
           <ReplyBox></ReplyBox>
+          
         </div>
       
         <div className="py-4 md:py-8" >{postData.map((post) => {
@@ -38,7 +39,6 @@ const any: NextPage<PostProps> = async ({ params }) => {
                   <span>☆</span>
                   </span>
                 </div>
-
                </div>
                   );
         } else {
