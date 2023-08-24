@@ -38,7 +38,6 @@ const PostCreater = () => {
       >
         <PlusButton />
       </button>
-
       <Modal
         isOpen={isOpen}
         onRequestClose={() => setIsOpen(false)}
@@ -67,7 +66,7 @@ const PostCreater = () => {
             </div>
             <div className="flex flex-col items-start sm:w-full">
               <PostInput
-                label="名前"
+                label="相談タイトル"
                 type="text"
                 helpText="必須"
                 name="title"
@@ -76,7 +75,7 @@ const PostCreater = () => {
                 options={{ required: '入力してください' }}
               />
               <PostTextarea
-                label="内容"
+                label="相談内容"
                 name="content"
                 helpText="必須"
                 register={register}
@@ -84,12 +83,11 @@ const PostCreater = () => {
                 options={{
                   required: '入力してください',
                   maxLength: {
-                    value: 3000,
+                    value: 50,
                     message: '文字数が多すぎます',
                   },
                 }}
               />
-
               <div className="flex w-full flex-row space-x-4">
                 <input
                   type="checkbox"
@@ -102,14 +100,12 @@ const PostCreater = () => {
                 </label>
               </div>
             </div>
-
             <button
               type="submit"
               className="mt-6 flex w-24 justify-center rounded-lg bg-yuzu"
             >
-              更新
+              送信
             </button>
-
             {/* <AccountButton
                   label='更新'
                   type='submit'
