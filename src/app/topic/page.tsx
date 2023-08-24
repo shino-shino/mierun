@@ -10,10 +10,10 @@ const Topic: NextPage = async () => {
   const { data: topic } = await supabase.from('topic').select();
 
   return (
-    <>
-      <h1>Topic</h1>
+    <div className='p-20'>
+      <h1 className='text-5xl'>トピック一覧</h1>
       <TopicList topics={topic}></TopicList>
-    </>
+    </div>
   );
 };
 
