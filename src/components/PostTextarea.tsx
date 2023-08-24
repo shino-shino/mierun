@@ -14,7 +14,7 @@ const PostTextarea = ({
     <div className="flex h-64 w-full flex-col px-3 py-2">
       <label htmlFor={name} className="text-sm font-bold text-slate-600">
         {label}
-        <span className="text-teal-700"> {helpText}</span>
+        <span className="text-xs text-teal-700"> {helpText}</span>
       </label>
       <textarea
         id={name}
