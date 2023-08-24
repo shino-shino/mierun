@@ -24,33 +24,12 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "pic_to_pos_pic_id_fkey"
-            columns: ["pic_id"]
-            referencedRelation: "picture"
-            referencedColumns: ["id"]
-          },
-          {
             foreignKeyName: "pic_to_pos_pos_id_fkey"
             columns: ["pos_id"]
             referencedRelation: "post"
             referencedColumns: ["id"]
           }
         ]
-      }
-      picture: {
-        Row: {
-          id: number
-          picture: string
-        }
-        Insert: {
-          id?: never
-          picture: string
-        }
-        Update: {
-          id?: never
-          picture?: string
-        }
-        Relationships: []
       }
       post: {
         Row: {
@@ -61,6 +40,7 @@ export interface Database {
           is_childminder: boolean
           is_root: boolean
           parent_id: number | null
+          title: string | null
         }
         Insert: {
           child_id?: number | null
@@ -70,6 +50,7 @@ export interface Database {
           is_childminder?: boolean
           is_root?: boolean
           parent_id?: number | null
+          title?: string | null
         }
         Update: {
           child_id?: number | null
@@ -79,6 +60,7 @@ export interface Database {
           is_childminder?: boolean
           is_root?: boolean
           parent_id?: number | null
+          title?: string | null
         }
         Relationships: [
           {
