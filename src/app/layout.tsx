@@ -20,9 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={`${KiwiMaru.className}  font-KiwiMaru`}>
+      <body className={KiwiMaru.className}>
         <Layout>
-          <main>{children}</main>
+          <main className='flex w-full'>{children}</main>
         </Layout>
       </body>
     </html>

@@ -10,21 +10,23 @@ interface LayoutProps {
 
 export const Layout = ({ children }: LayoutProps): JSX.Element => {
   return (
-    <div className="h-screen w-full bg-lemon">
-      <div className="flex w-full justify-between px-4 py-10 md:flex-row md:px-20 md:py-20">
-        <Link href="/" className="flex flex-col">
-          <h1 className="text-xl font-semibold md:text-2xl">
+    <div className="flex h-screen items-center flex-col space-y-6 bg-lemon">
+      <div className="flex w-full h-24 justify-between px-4 md:flex-row ">
+        <Link href="/" className="flex flex-col space-y-4">
+          <h1 className="text-xl font-bold md:text-2xl">
             育児の今が見えるSNS
           </h1>
-          <p className="text-base">mierun</p>
+          <p className="text-base font-semibold md:text-xl">mierun</p>
         </Link>
-        <DesktopNavbar />
-        <Link href="/profile">
-          <SupervisedUserCircle href="/profile" fontSize="large" />
-        </Link>
+        <div className='flex h-full justify-center items-ceter flex-row space-x-8 px-2 py-4'>
+          <DesktopNavbar />
+          <Link href="/profile">
+            <SupervisedUserCircle href="/profile" fontSize="large" />
+          </Link>
+        </div>
       </div>
       <MobileNavbar />
-      <div className="mx-5 my-10 rounded-lg bg-white md:mx-10">{children}</div>
+      <div className="flex w-2/3 h-screen justify-center items-center rounded-xl bg-white" >{children}</div>
     </div>
   );
 };

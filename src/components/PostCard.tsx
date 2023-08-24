@@ -3,13 +3,14 @@
 type PostCardProps = {
   title: string;
   content: string;
-  color: 'yuzu' | 'mandarin' | 'lime' | 'grapefruit' | 'lemon';
+  color: string;
 };
 
 export const PostCard = ({ title, content, color }: PostCardProps) => {
-  // const colorClassName = 'bg-[#ffe24a]';
-  const colorClassName = 'bg-' + color;
-  const cardClassName = 'flex w-48 h-32 flex-col space-y-1 ' + colorClassName;
+  const colorClassName = 'bg-[#ffe24a]';
+  // const colorClassName = 'bg-' + color;
+  // const cardClassName = 'flex w-48 h-32 flex-col space-y-1 ' + colorClassName;
+  const cardClassName = `flex w-48 h-32 flex-col space-y-1 bg-[#ffe24a]`;
 
   return (
     // <div className={cardClassName}>

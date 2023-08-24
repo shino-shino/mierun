@@ -17,7 +17,7 @@ const Post: NextPage<PostProps> = async () => {
 
   return (
     <div>
-      <PostView posts={post} />
+      <PostView  />
     </div>
   );
 };

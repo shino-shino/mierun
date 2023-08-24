@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Database } from '~/types/Database';
 import { PostValues } from './PostCreater';
 
+type TopicData = Database['public']['Tables']['topic']['Row'];
 type PostData = Database['public']['Tables']['post']['Row'];
 
 const supabase = createClientComponentClient()
@@ -27,7 +28,7 @@ export async function postToMierun(post: PostValues) {
   }
 };
 
-export async function downloadDatabase(topicID: string) {
+export async function downloadDatabase(topicID: string): Promise<PostData[] | undefined> {
   try {
     const { data: topic, error: topicError } = await supabase
       .from('topic')
@@ -36,15 +37,18 @@ export async function downloadDatabase(topicID: string) {
       .single();
 
     if (topicError) throw Error
-    if (!topic) throw Error 
+    if (!topic.list_of_post) throw Error 
+
+    const listOfPost = Object.entries(topic.list_of_post)
+    
     const { data: post, error: postError } = await supabase
       .from('post')
       .select()
-      .in('id', topic.list_of_post);
+      .in('id', listOfPost);
 
     if (postError) throw Error
     
-    if (post) return new Promise((resolve) => resolve(post))
+    if (post) return post
   }
   catch (error){
     console.error(error)
