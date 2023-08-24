@@ -1,5 +1,9 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { useEffect, useState } from 'react';
+import { Database } from '~/types/Database';
 import { PostValues } from './PostCreater';
+
+type PostData = Database['public']['Tables']['post']['Row'];
 
 const supabase = createClientComponentClient()
 
@@ -67,18 +71,37 @@ export async function insertReplyWithParentId(targetId:number, post: PostValues)
   }
 };
 
-function getReplysId(targetId: number): number {
+// なんで皆関数の戻り値の型をガシガシ省略するんですかねぇ
+async function getReplysId(targetId: number) {
   // parent_idに親のIDが入っている要素を探す
-  const num: number = 0;
-
   // search elements | targetId == parent_id
+  try {
+    // console.log(post)
+    const { data, error } = await supabase.from("post").select().eq("parent_id", targetId);
+    if (error) throw Error;
+    if (data) {
+      const [posts, setPosts] = useState<PostData>()
+      const [loading, setLoading] = useState<boolean>(true)
 
-  return num;
+      useEffect(() => {
+        downloadDatabase('5').then((res) => {
+          setPosts(res)
+          // console.log('posts',posts)
+        })
+        if (posts) setLoading(false)
+      }, [posts])
+      let num: number = posts.map((post: PostData) => (post.id.valueOf()))
+      return num;
+    }
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 async function insertChildIdToParentPost(targetId: number) {
   // targetのchild IDに返信ポストのIDを挿入
   const replyId: number = getReplysId(targetId);
+  console.log(replyId)
   // update row with replyId | targetId == parent_id
   try{
   const{error} =await supabase
