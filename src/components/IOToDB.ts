@@ -60,8 +60,21 @@ export async function insertReplyWithParentId(
   targetId: number,
   post: PostValues,
 ) {
+export async function insertReplyWithParentId(
+  targetId: number,
+  post: PostValues,
+) {
   try {
     // console.log(post)
+    const { error } = await supabase.from('post').insert({
+      // id: 0,
+      content: post.content,
+      is_root: true,
+      is_childminder: post.isChildminder,
+      parent_id: targetId,
+      // child_id: 0,
+      created_at: new Date().toISOString(),
+    });
     const { error } = await supabase.from('post').insert({
       // id: 0,
       content: post.content,
@@ -75,7 +88,9 @@ export async function insertReplyWithParentId(
     if (error) throw Error;
   } catch (error) {
     console.error(error);
+    console.error(error);
   }
+}
 }
 
 // なんで皆関数の戻り値の型をガシガシ省略するんですかねぇ
@@ -88,15 +103,26 @@ async function getReplysId(targetId: number) {
       .from('post')
       .select()
       .eq('parent_id', targetId);
+    const { data, error } = await supabase
+      .from('post')
+      .select()
+      .eq('parent_id', targetId);
     if (error) throw Error;
     if (data) {
+      const [posts, setPosts] = useState<PostData>();
+      const [loading, setLoading] = useState<boolean>(true);
       const [posts, setPosts] = useState<PostData>();
       const [loading, setLoading] = useState<boolean>(true);
 
       useEffect(() => {
         downloadDatabase('5').then((res) => {
           setPosts(res);
+          setPosts(res);
           // console.log('posts',posts)
+        });
+        if (posts) setLoading(false);
+      }, [posts]);
+      let num: number = posts.map((post: PostData) => post.id.valueOf());
         });
         if (posts) setLoading(false);
       }, [posts]);
@@ -105,6 +131,7 @@ async function getReplysId(targetId: number) {
     }
   } catch (error) {
     console.error(error);
+    console.error(error);
   }
 }
 
@@ -112,7 +139,15 @@ async function insertChildIdToParentPost(targetId: number) {
   // targetのchild IDに返信ポストのIDを挿入
   const replyId: number = getReplysId(targetId);
   console.log(replyId);
+  console.log(replyId);
   // update row with replyId | targetId == parent_id
+  try {
+    const { error } = await supabase
+      .from('post')
+      .update({ child_id: replyId })
+      .match({ parentid: targetId });
+  } catch (error) {
+    console.log(error);
   try {
     const { error } = await supabase
       .from('post')
