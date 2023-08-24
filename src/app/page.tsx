@@ -1,6 +1,5 @@
 import { NextPage } from 'next';
 // import { getListOfPostFromMierun } from '~/components/IOToDB';
-import PostCreater from '~/components/PostCreater';
 import { PostView } from '~/components/PostView';
 
 const Home: NextPage = async () => {
@@ -10,8 +9,7 @@ const Home: NextPage = async () => {
   // const data = getListOfPostFromMierun()
   // console.log('data', data)
   return (
-    <div className="flex flex-col flex-wrap gap-8 bg-slate-200">
-      <PostCreater />
+    <div className="flex flex-row">
       <PostView />
     </div>
   );

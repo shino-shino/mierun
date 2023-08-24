@@ -4,15 +4,16 @@ import { Database } from '~/types/Database';
 import { getColorById } from '~/utils/color';
 import { downloadDatabase } from './IOToDB';
 import { PostCard } from './PostCard';
+import PostCreater from './PostCreater';
 
 type PostData = Database['public']['Tables']['post']['Row'];
 
 interface PostViewProps {
-  posts: PostData[] | null;
+  posts: PostData[];
 }
 
 export const PostView = (): JSX.Element => {
-  const [posts, setPosts] = useState<PostData>()
+  const [posts, setPosts] = useState<PostData[]>()
   const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
@@ -27,8 +28,15 @@ export const PostView = (): JSX.Element => {
   if (loading) return (
     <div>loading...</div>
   )
+
+  if (!posts) return (
+    <div>エラーが発生しました</div>
+  )
+  
   return (
-    <div className="flex flex-row flex-wrap gap-8 bg-slate-300">
+    <div className="flex w-full justify-center items-center flex-row flex-wrap space-x-8 space-y-4">
+      <PostCreater />
+      
       {posts.map((post: PostData) => (
         <PostCard
           // key={post.id}
@@ -37,7 +45,7 @@ export const PostView = (): JSX.Element => {
           color={getColorById(post.id)}
         />
       ))}
-      a
+
     </div>
   );
 };

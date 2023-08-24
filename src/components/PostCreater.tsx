@@ -83,8 +83,8 @@ const PostCreater = () => {
 
             </div>
 
-            <button type='submit' className='mt-6 flex w-24 justify-center rounded-lg bg-yuzu'>
-              更新
+            <button type='submit'className='mt-6 flex w-24 justify-center rounded-lg bg-yuzu'>
+              投稿
             </button>
 
 
