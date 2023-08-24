@@ -34,7 +34,7 @@ export const PostView = ({ posts }: PostViewProps): JSX.Element => {
       <PostCreater />
       
       {posts.map((post: PostData) => (
-        <div className='[&:nth-child(5n)]:bg-[#FFFD94] [&:nth-child(5n+1)]:bg-[#FFC01D] [&:nth-child(5n+2)]:bg-[#CFFF49] [&:nth-child(5n+3)]:bg-[#FFC01D] [&:nth-child(5n+4)]:bg-[#F4AF90] hover:brightness-90'>
+        <div className='[&:nth-child(5n)]:bg-[#FFFD94] [&:nth-child(5n+1)]:bg-[#FFE249] [&:nth-child(5n+2)]:bg-[#FFC01D] [&:nth-child(5n+3)]:bg-[#CFFF49] [&:nth-child(5n+4)]:bg-[#F4AF90] hover:brightness-90 top-0'>
           <PostCard
             // key={post.id}
             title={post.id.toString()}
