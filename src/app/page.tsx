@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 // import { getListOfPostFromMierun } from '~/components/IOToDB';
+import PostCreater from '~/components/PostCreater';
 import { PostView } from '~/components/PostView';
 import { PostData, downloadAllPosts } from '~/components/downloadDatabase';
 
@@ -12,6 +13,7 @@ const Home: NextPage = async () => {
   // console.log('data', topics)
   return (
     <div className="flex flex-row">
+      <PostCreater />
       <PostView posts={posts} />
     </div>
   );
