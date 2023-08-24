@@ -5,7 +5,6 @@ import { Database } from '~/types/Database';
 export type TopicData = Database['public']['Tables']['topic']['Row'];
 export type PostData = Database['public']['Tables']['post']['Row'];
 
-
 export async function downloadTopics(): Promise<TopicData[] | undefined> {
   const supabase = createServerComponentClient<Database>({ cookies });
 
@@ -14,27 +13,26 @@ export async function downloadTopics(): Promise<TopicData[] | undefined> {
       .from('topic')
       .select(
         `
-        id, 
+        id,
         topic_title,
         topic_description,
         list_of_post
-      `
-      )
-      // .single()
+      `,
+      );
+    // .single()
 
-    if (topicError) throw Error
-    if (!topics) throw Error 
+    if (topicError) throw Error;
+    if (!topics) throw Error;
     // for (const t of topic) t.list_of_post = Object.entries(t.list_of_post)
-    if (topics) return topics
+    if (topics) return topics;
+  } catch (error) {
+    console.error(error);
   }
-  catch (error){
-    console.error(error)
-  }
-  
 }
 
-
-export async function downloadPosts(topicID: string): Promise<PostData[] | undefined> {
+export async function downloadPosts(
+  topicID: string,
+): Promise<PostData[] | undefined> {
   const supabase = createServerComponentClient<Database>({ cookies });
 
   try {
@@ -42,22 +40,35 @@ export async function downloadPosts(topicID: string): Promise<PostData[] | undef
       .from('topic')
       .select('list_of_post')
       .eq('id', topicID)
-      .single()
+      .single();
 
-    if (topicError) throw Error
-    if (!topic.list_of_post) throw Error 
+    if (topicError) throw Error;
+    if (!topic.list_of_post) throw Error;
 
-    const listOfPost = Object.entries(topic.list_of_post)
-    
+    const listOfPost = Object.entries(topic.list_of_post);
+
     const { data: posts, error: postError } = await supabase
       .from('post')
       .select()
-      .in('id', listOfPost)
+      .in('id', listOfPost);
 
-    if (postError) throw Error
-    if (posts) return posts
+    if (postError) throw Error;
+    if (posts) return posts;
+  } catch (error) {
+    console.error(error);
   }
-  catch (error){
-    console.error(error)
+}
+
+export async function downloadAllPosts(): Promise<PostData[] | undefined> {
+  const supabase = createServerComponentClient<Database>({ cookies });
+
+  try {
+    const { data: posts, error } = await supabase.from('post').select();
+
+    if (error) throw Error;
+
+    return posts;
+  } catch (error) {
+    console.error(error);
   }
 }
