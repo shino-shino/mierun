@@ -76,10 +76,18 @@ function getReplysId(targetId: number): number {
   return num;
 }
 
-function insertChildIdToParentPost(targetId: number) {
+async function insertChildIdToParentPost(targetId: number) {
   // targetのchild IDに返信ポストのIDを挿入
   const replyId: number = getReplysId(targetId);
   // update row with replyId | targetId == parent_id
+  try{
+  const{error} =await supabase
+  .from('post')
+  .update({child_id:replyId})
+  .match({parentid:targetId})
+  }catch(error){
+    console.log(error)
+  }
 }
 
 export async function reply(targetId: number, post: PostValues) {
