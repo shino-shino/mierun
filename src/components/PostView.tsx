@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 import { Database } from '~/types/Database';
 import { getColorById } from '~/utils/color';
-import { downloadDatabase } from './IOToDB';
 import { PostCard } from './PostCard';
 import PostCreater from './PostCreater';
 
@@ -12,24 +11,21 @@ interface PostViewProps {
   posts: PostData[];
 }
 
-export const PostView = (): JSX.Element => {
-  const [posts, setPosts] = useState<PostData[]>()
+export const PostView = ({ posts }: PostViewProps): JSX.Element => {
+  // const [posts, setPosts] = useState<PostData[] | undefined>(props)
   const [loading, setLoading] = useState<boolean>(true)
+  console.log('posts', posts)
 
   useEffect(() => {
-    downloadDatabase('5').then((res) => {
-      setPosts(res)
-      // console.log('posts',posts)
-    })
-    if (posts) setLoading(false)
+    // setPosts(props)
 
+    if (posts && posts.length) setLoading(false)
   }, [posts])
 
   if (loading) return (
     <div>loading...</div>
   )
-
-  if (!posts) return (
+  if (!loading && posts && !posts.length) return (
     <div>エラーが発生しました</div>
   )
   
