@@ -7,10 +7,11 @@ type PostCardProps = {
 };
 
 export const PostCard = ({ title, content, color }: PostCardProps) => {
-  const colorClassName = 'bg-[#ffe24a]';
+  // const colorClassName = 'bg-[#ffe24a]';
   // const colorClassName = 'bg-' + color;
   // const cardClassName = 'flex w-48 h-32 flex-col space-y-1 ' + colorClassName;
-  const cardClassName = `flex w-48 h-60 flex-col space-y-1 bg-[#ffe24a]`;
+  // const cardClassName = `flex w-48 h-60 flex-col space-y-1 bg-[#ffe24a]`;
+  const cardClassName = `flex w-48 h-60 flex-col space-y-1`;
 
   return (
     // <div className={cardClassName}>
