@@ -1,16 +1,16 @@
 import { NextPage } from 'next';
 // import { getListOfPostFromMierun } from '~/components/IOToDB';
-import { PostView } from '~/components/PostView';
+import { downloadTopics } from '~/components/downloadDatabase';
 
 const Home: NextPage = async () => {
   // const supabase = createServerComponentClient({ cookies });
   // const { data: post } = await supabase.from('post').select();
-  // console.log(post);
   // const data = getListOfPostFromMierun()
-  // console.log('data', data)
+  const topics = await downloadTopics()
+  // console.log('data', topics)
   return (
     <div className="flex flex-row">
-      <PostView />
+      {/* <PostView /> */}aaaaa
     </div>
   );
 };
