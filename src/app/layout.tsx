@@ -1,13 +1,12 @@
-import { Kiwi_Maru } from "next/font/google";
+import { Kiwi_Maru } from 'next/font/google';
 import 'semantic-ui-css/semantic.min.css';
 import '~/assets/styles/globals.css';
+import { Layout } from '~/components/layout';
 
-export const KiwiMaru = Kiwi_Maru(
-  {
-    weight: '400',
-    subsets: ['latin']
-  }
-)
+export const KiwiMaru = Kiwi_Maru({
+  weight: '400',
+  subsets: ['latin'],
+});
 
 export const metadata = {
   title: 'みえるん',
@@ -22,7 +21,9 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`${KiwiMaru.className}  font-KiwiMaru`}>
-        <main className={"min-h-screen bg-background"}>{children}</main>
+        <Layout>
+          <main>{children}</main>
+        </Layout>
       </body>
     </html>
   );
