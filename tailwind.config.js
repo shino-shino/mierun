@@ -22,6 +22,7 @@ module.exports = {
         'lemon': '#fffd93'
       },
       fontFamily: {
+        MierunDefault: [ 'Hiragino Sans','ヒラギノ角ゴシック','メイリオ','Meiryo'],
         KiwiMaru: ["var(--font-KiwiMaru)"],
       },
       plugins: [
