@@ -39,10 +39,7 @@ export async function downloadDatabase(
       .single();
 
     if (topicError) throw Error;
-    if (!topic.list_of_post) throw Error;
-
-    const listOfPost = Object.entries(topic.list_of_post);
-
+    if (!topic) throw Error;
     const { data: post, error: postError } = await supabase
       .from('post')
       .select()
@@ -50,7 +47,7 @@ export async function downloadDatabase(
 
     if (postError) throw Error;
 
-    if (post) return post;
+    if (post) return new Promise((resolve) => resolve(post));
   } catch (error) {
     console.error(error);
   }
