@@ -30,7 +30,7 @@ export const PostView = ({ posts }: PostViewProps): JSX.Element => {
   )
   
   return (
-    <div className="flex w-full justify-center items-center flex-row flex-wrap space-x-8 space-y-6 py-24">
+    <div className="flex w-full justify-center items-center flex-row flex-wrap space-x-8 space-y-6 py-4 [&:nth-child(5n)]:bg-[#ffe24a] [&:nth-child(5n+1)]:bg-[#FFC01D] [&:nth-child(5n+2)]:bg-[#CFFF49] [&:nth-child(5n+3)]:bg-[#F4AF90] [&:nth-child(5n+3)]:bg-[#FFFD94]">
       <PostCreater />
       
       {posts.map((post: PostData) => (
