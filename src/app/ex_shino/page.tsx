@@ -10,7 +10,7 @@ interface PostProps {
     topicId: string;
   };
 }
-function getReply(parent_id:number){
+async function  getReply(parent_id:number){
   try{
     const {data,error} =await supabase.from("post")
     .select()
@@ -29,7 +29,7 @@ const any: NextPage<PostProps> = async ({ params }) => {
   const post_id = 36;
   const post_js= await GetPost(post_id);
   const post = new Post(5,post_js[0].title,post_js[0].content,post_js[0].created_at,post_js[0].is_root,post_js[0].is_childminder);
-  const replys = getReply(post_id)
+  const reply:Post = getReply(post_id);
   return (
      <div className='bg-[#FFFD93]  my-0'>
       <div className="bg-white mx-10 my-10">
@@ -43,16 +43,16 @@ const any: NextPage<PostProps> = async ({ params }) => {
         </div>
 
         
-        <div className="py-4 md:py-8" >(post) => {
+        <div className="py-4 md:py-8" >{(() => {
           if(post.is_childminder) {
             return (
-              <div className="bg-[#FFE249] flex flex-col gap-3 py-4 md:py-1 mx-40" key={post.id}>
+              <div className="bg-[#FFE249] flex flex-col gap-3 py-4 md:py-1 mx-40" key={reply.id}>
                 <div className="bg-white rounded-md mt-10 py-1 mx-3">
                   <span className="block text-sm font-bold mx-3">
-                    {post.content}
+                    {reply.content}
                   </span>
                   <span className="block text-sm text-gray-500 mx-3">
-                    {post.created_at}
+                    {reply.created_at}
                   <span>☆</span>
                   </span>
                 </div>
@@ -60,19 +60,19 @@ const any: NextPage<PostProps> = async ({ params }) => {
                   );
         } else {
           return (
-            <div className="bg-[#FFE249] flex flex-col gap-3 py-0 md:py-1 mx-40" key={post.id}>
+            <div className="bg-[#FFE249] flex flex-col gap-3 py-0 md:py-1 mx-40" key={reply.id}>
                <div className="bg-white rounded-md mt-10  py-1 mx-3">
                 <span className="block text-sm font-bold mx-3">
-                  {post.content}
+                  {reply.content}
                   </span>
                 <span className="block text-sm text-gray-500 mx-3">
-                  {post.created_at}
+                  {reply.created_at}
                 </span>
                 </div>
             </div>
           );
         }
-        })}
+        })()}
         </div>
       </div>
     </div>
