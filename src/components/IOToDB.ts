@@ -11,6 +11,7 @@ export async function postToMierun(post: PostValues) {
     // console.log(post)
     const { error } = await supabase.from('post').insert({
       // id: 0,
+      title: post.title,
       content: post.content,
       is_root: true,
       is_childminder: post.isChildminder,

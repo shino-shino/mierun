@@ -31,6 +31,7 @@ const PostCreater = ({ topicId }: PostCreaerProps): JSX.Element => {
     const postId = await getLatestPostID();
     await addPostIdToTopic(topicId, postId);
     await setIsOpen(false);
+    window.location.reload();
   };
 
   return (
