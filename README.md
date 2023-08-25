@@ -1,4 +1,5 @@
 <p align="center">
+  <img src="./mierun.svg">
   <samp>
     <b>
       <h1 align="center">
@@ -30,8 +31,8 @@ URL
 
 ## Contributers
 
+- [Koizumi Naoki](mailto:koizumi@ss.cs.osaka-u.ac.jp)
+- [Shinohara Taisei](mailto:taisei.shinohara1329@gmail.com)
+- [Chiba](mailto:chiba4729@gmail.com)
+- [Nishida Yuta](mailto:ypmtk437.0209@gmail.com)
 - [Yusaku Maeda](mailto:yuni.hutsuka@amanoji-studio.com)
-- [](mailto:)
-- [](mailto:)
-- [](mailto:)
-- [](mailto:)
