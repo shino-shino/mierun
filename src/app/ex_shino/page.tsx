@@ -31,9 +31,9 @@ const any: NextPage<PostProps> = async ({ params }) => {
   const post = new Post(5,post_js[0].title,post_js[0].content,post_js[0].created_at,post_js[0].is_root,post_js[0].is_childminder);
   const reply:Post = getReply(post_id);
   return (
-     <div className='bg-[#FFFD93]  my-0'>
-      <div className="bg-white mx-10 my-10">
-        <h1>Topic</h1>
+     <div className='my-0'>
+      <div className="bg-white mx-10 my-10 ">
+        <h1 className="text-4xl font-bold">Topic</h1>
         <PostDetail post = {post}/>
      
         <div className='bg-[#FFE249] mx-40 px-8 py-4'>
