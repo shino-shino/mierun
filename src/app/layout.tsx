@@ -9,7 +9,7 @@ export const KiwiMaru = Kiwi_Maru({
 });
 
 export const metadata = {
-  title: 'みえるん',
+  title: 'mierun',
   description: 'みえるんは子育て相談SNSです。',
 };
 

@@ -15,9 +15,12 @@ export const TopicList = ({ topics }: TopicListProps): JSX.Element => {
   }
 
   return (
-    <ul className='pt-10 pl-20'>
+    <ul className="pl-20 pt-10">
       {topics.map((topic) => (
-        <li key={topic.id} className='text-4xl pt-6 pl-2 list-decimal'>
+        <li
+          key={topic.id}
+          className="list-decimal text-xl md:pl-2 md:pt-6 md:text-4xl"
+        >
           <Link href={`/topic/${topic.id}`}>{topic.topic_title}</Link>
         </li>
       ))}

@@ -24,9 +24,9 @@ export const PostView = ({ posts, topicId }: PostViewProps): JSX.Element => {
   if (!posts || posts.length === 0) return <div>エラーが発生しました</div>;
 
   return (
-    <div className="flex w-full flex-wrap items-center justify-center space-x-6 space-y-6 py-4">
+    <div className="flex w-full flex-wrap items-center justify-center py-10">
       {posts.map((post: PostData) => (
-        <div className="top-0 hover:brightness-90 [&:nth-child(5n)]:bg-[#FFFD94] [&:nth-child(5n+1)]:bg-[#FFE249] [&:nth-child(5n+2)]:bg-[#FFC01D] [&:nth-child(5n+3)]:bg-[#CFFF49] [&:nth-child(5n+4)]:bg-[#F4AF90]">
+        <div className="top-0 m-4 hover:brightness-90 [&:nth-child(5n)]:bg-[#FFFD94] [&:nth-child(5n+1)]:bg-[#FFE249] [&:nth-child(5n+2)]:bg-[#FFC01D] [&:nth-child(5n+3)]:bg-[#CFFF49] [&:nth-child(5n+4)]:bg-[#F4AF90]">
           <PostCard
             key={post.id}
             title={post.title}
