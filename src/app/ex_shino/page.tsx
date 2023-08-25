@@ -1,19 +1,35 @@
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { NextPage } from 'next';
 import { Post } from "~/components/ClassPost";
 import { GetPost } from '~/components/GetPost';
 import PostDetail from '~/components/PostDetail';
 import ReplyBox from '~/components/ReplyBox';
-import { postData } from '~/constants/postData';
+const supabase = createClientComponentClient();
 interface PostProps {
   params: {
     topicId: string;
   };
 }
+function getReply(parent_id:number){
+  try{
+    const {data,error} =await supabase.from("post")
+    .select()
+    .eq('parent_id',parent_id);
+    const post_st = JSON.stringify(data);
+    console.log(post_st)  
+    const post_js = JSON.parse(post_st);
+
+      return new Post(5,post_js[0].title,post_js[0].content,post_js[0].created_at,post_js[0].is_root,post_js[0].is_childminder);
+  }catch(error){
+    console.log(error)
+  }
+}
 
 const any: NextPage<PostProps> = async ({ params }) => {
-  const post_js= await GetPost(36);
+  const post_id = 36;
+  const post_js= await GetPost(post_id);
   const post = new Post(5,post_js[0].title,post_js[0].content,post_js[0].created_at,post_js[0].is_root,post_js[0].is_childminder);
-  console.log(post)
+  const replys = getReply(post_id)
   return (
      <div className='bg-[#FFFD93]  my-0'>
       <div className="bg-white mx-10 my-10">
@@ -25,9 +41,10 @@ const any: NextPage<PostProps> = async ({ params }) => {
           <ReplyBox></ReplyBox>
           
         </div>
-      
-        <div className="py-4 md:py-8" >{postData.map((post) => {
-          if(post.isRoot) {
+
+        
+        <div className="py-4 md:py-8" >(post) => {
+          if(post.is_childminder) {
             return (
               <div className="bg-[#FFE249] flex flex-col gap-3 py-4 md:py-1 mx-40" key={post.id}>
                 <div className="bg-white rounded-md mt-10 py-1 mx-3">
@@ -35,7 +52,7 @@ const any: NextPage<PostProps> = async ({ params }) => {
                     {post.content}
                   </span>
                   <span className="block text-sm text-gray-500 mx-3">
-                    {post.create_at}
+                    {post.created_at}
                   <span>☆</span>
                   </span>
                 </div>
@@ -49,7 +66,7 @@ const any: NextPage<PostProps> = async ({ params }) => {
                   {post.content}
                   </span>
                 <span className="block text-sm text-gray-500 mx-3">
-                  {post.create_at}
+                  {post.created_at}
                 </span>
                 </div>
             </div>
