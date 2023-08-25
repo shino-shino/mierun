@@ -11,9 +11,9 @@ const Topic: NextPage = async () => {
   const { data: topic } = await supabase.from('topic').select();
 
   return (
-    <div className="p-20">
+    <div className="md:p-20">
       <PostCreater />
-      <h1 className="text-5xl">トピック一覧</h1>
+      <h1 className="text-2xl md:text-5xl">トピック一覧</h1>
       <TopicList topics={topic}></TopicList>
     </div>
   );
