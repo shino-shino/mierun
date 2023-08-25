@@ -23,6 +23,7 @@ const Post: NextPage<PostProps> = async ({ params }) => {
   if (posts && posts.length)
     return (
       <div>
+        <PostCreater topicId={topicId} />
         <PostView posts={posts} topicId={topicId} />
       </div>
     );
