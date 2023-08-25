@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./mierun.svg">
+  <img src="./src/assets/mierun.svg">
   <samp>
     <b>
       <h1 align="center">
@@ -16,6 +16,12 @@
 - You can post a worries.
 - Someone can reply advice to worries.
 - Worries are categorized in topic.
+
+## ScreenShots
+
+<img src="./src/assets/screenshot_modal_new.png">
+<img src="./src/assets/screenshot_top.png">
+<img src="./src/assets/screenshot_topic.png">
 
 ## How to test
 
