@@ -30,6 +30,7 @@ const any: NextPage<PostProps> = async ({ params }) => {
   const post_js= await GetPost(post_id);
   const post = new Post(5,post_js[0].title,post_js[0].content,post_js[0].created_at,post_js[0].is_root,post_js[0].is_childminder);
   const reply:Post | undefined = await getReply(post_id);
+  
   return (
     <div className='my-0'>
     <div className="bg-white mx-10 my-10 ">
