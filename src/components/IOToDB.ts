@@ -59,15 +59,16 @@ export async function insertReplyWithParentId(
 ) {
   try {
     // console.log(post)
-    const { error } = await supabase.from('post').insert({
-      // id: 0,
-      content: post.content,
-      is_root: true,
-      is_childminder: post.isChildminder,
-      parent_id: targetId,
-      // child_id: 0,
-      created_at: new Date().toISOString(),
-    });
+    const { error } = await supabase.from("post")
+      .insert({
+        // id: 0,
+        content: post.content, 
+        is_root: false, 
+        is_childminder: post.isChildminder,
+        parent_id: targetId,
+        // child_id: 0,
+        created_at: new Date().toISOString()
+      });
     if (error) throw Error;
   } catch (error) {
     console.error(error);
@@ -79,17 +80,13 @@ async function getReplysId(targetId: number) {
   // parent_idに親のIDが入っている要素を探す
   // search elements | targetId == parent_id
   try {
-    // console.log(post)
-    const { data, error } = await supabase
-      .from('post')
-      .select()
-      .eq('child_id', targetId);
-    const stdata = JSON.stringify(data);
+    const { data, error } = await supabase.from('post').select().eq('parent_id', targetId);
+    const stdata = JSON.stringify(data)
     if (error) throw Error;
-    if (typeof stdata === 'string') {
-      const post_js = JSON.parse(stdata);
-      return post_js[0].parent_id;
-    }
+    if(typeof stdata === "string"){
+       const post_js= JSON.parse(stdata);
+       return post_js[0].id
+      }
   } catch (error) {
     console.error(error);
   }
@@ -97,15 +94,14 @@ async function getReplysId(targetId: number) {
 
 async function insertChildIdToParentPost(targetId: number) {
   // targetのchild IDに返信ポストのIDを挿入
-  const replyId = await getReplysId(targetId);
-  console.log(replyId);
-  try {
-    const { error } = await supabase
-      .from('post')
-      .update({ child_id: replyId })
-      .match({ parentid: targetId });
-  } catch (error) {
-    console.log(error);
+  let replyId:number = await getReplysId(targetId);
+  try{
+  const{error} =await supabase
+  .from('post')
+  .update({child_id:replyId})
+  .eq('id',targetId)
+  }catch(error){
+    console.log(error)
   }
 }
 
